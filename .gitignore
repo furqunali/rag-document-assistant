@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Environments & secrets — never commit
+.env
+.env.*
+*.key
+*.pem
+.venv/
+venv/
+
+# Model / HF caches
+.cache/
+hf_cache/
+
+# User-uploaded documents must never be committed
+uploads/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
