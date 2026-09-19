@@ -1,27 +1,20 @@
 """Nearest-neighbour retrieval primitives."""
 from __future__ import annotations
-
 from dataclasses import dataclass
 from typing import Callable
-
 import numpy as np
-
-from rag import Chunk
-
+from models import Chunk
 Vector = np.ndarray
 EmbedFn = Callable[[list[str]], np.ndarray]
-
 
 def cosine_scores(matrix: np.ndarray, vector: np.ndarray) -> np.ndarray:
     denominator = (np.linalg.norm(matrix, axis=1) * np.linalg.norm(vector)) + 1e-9
     return (matrix @ vector) / denominator
 
-
 @dataclass
 class Retrieved:
     chunk: Chunk
     score: float
-
 
 class Retriever:
     """Pre-computes document vectors and returns deterministic top-k matches."""
