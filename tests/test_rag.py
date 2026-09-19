@@ -49,6 +49,12 @@ def test_answer_is_grounded_with_citations():
     assert "9:00" in res["answer"] or "support" in res["answer"].lower()
 
 
+@pytest.mark.parametrize("threshold", [-0.1, float("inf"), float("nan")])
+def test_answer_rejects_invalid_threshold(threshold):
+    with pytest.raises(ValueError, match="finite, non-negative"):
+        rag.answer("refund", [], threshold=threshold)
+
+
 def test_says_i_dont_know_when_off_topic():
     r = _retriever()
     hits = r.query("What is the airspeed velocity of an unladen swallow?", k=3)
