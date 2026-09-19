@@ -172,7 +172,8 @@ class Retriever:
         self.matrix = embed([c.text for c in chunks]) if chunks else np.zeros((0, 1))
 
     def query(self, question: str, k: int = 4) -> list[Retrieved]:
-        if not self.chunks:
+        question = (question or "").strip()
+        if not question or not self.chunks:
             return []
         q = self.embed([question])[0]
         scores = _cosine(self.matrix, q)
