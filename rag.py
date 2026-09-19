@@ -176,7 +176,8 @@ class Retriever:
             return []
         q = self.embed([question])[0]
         scores = _cosine(self.matrix, q)
-        order = np.argsort(scores)[::-1][:k]
+        k = max(0, min(k, len(self.chunks)))
+        order = sorted(range(len(self.chunks)), key=lambda i: (-float(scores[i]), self.chunks[i].index))[:k]
         return [Retrieved(self.chunks[i], float(scores[i])) for i in order]
 
 
