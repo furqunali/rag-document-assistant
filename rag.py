@@ -198,6 +198,9 @@ def answer(question: str, hits: list[Retrieved], threshold: float = 0.15,
       grounded answer; otherwise we return an extractive answer from the top
       chunk(s). Either way we attach citations.
     """
+    if not math.isfinite(threshold) or threshold < 0:
+        raise ValueError("threshold must be a finite, non-negative number")
+
     top = hits[0].score if hits else 0.0
     if not hits or top < threshold:
         return {"answer": IDK, "grounded": False, "citations": [], "top_score": round(top, 3)}
