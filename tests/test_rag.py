@@ -20,6 +20,19 @@ def test_chunking_overlaps_and_covers():
     assert [c.index for c in chunks] == list(range(len(chunks)))
 
 
+@pytest.mark.parametrize(
+    ("chunk_size", "overlap", "message"),
+    [
+        (0, 0, "chunk_size"),
+        (10, -1, "overlap"),
+        (10, 10, "overlap"),
+    ],
+)
+def test_chunking_rejects_invalid_window_configuration(chunk_size, overlap, message):
+    with pytest.raises(ValueError, match=message):
+        rag.chunk_text("A. B.", source="x", chunk_size=chunk_size, overlap=overlap)
+
+
 def test_retrieval_finds_relevant_chunk():
     r = _retriever()
     hits = r.query("How long do I have to get a refund?", k=3)

@@ -44,6 +44,13 @@ def chunk_text(text: str, source: str, chunk_size: int = 600,
     Overlap preserves context that would otherwise be cut at a boundary. Sizes
     are in characters (approximate) using sentence-aware packing.
     """
+    if chunk_size <= 0:
+        raise ValueError("chunk_size must be positive")
+    if overlap < 0:
+        raise ValueError("overlap must be non-negative")
+    if overlap >= chunk_size:
+        raise ValueError("overlap must be smaller than chunk_size")
+
     text = re.sub(r"\s+", " ", text or "").strip()
     if not text:
         return []
