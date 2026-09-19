@@ -70,6 +70,15 @@ def test_empty_index_is_safe():
     assert res["grounded"] is False
 
 
+def test_query_with_negative_k_skips_embedding():
+    class ExplodingEmbedder:
+        def __call__(self, texts):
+            raise AssertionError("embedder should not be called")
+
+    chunks = [rag.Chunk("refund policy", "policy.md", 0)]
+    assert rag.Retriever(chunks, ExplodingEmbedder()).query("refund", k=-1) == []
+
+
 def test_query_with_zero_k_returns_no_results():
     r = _retriever()
     assert r.query("refund", k=0) == []
