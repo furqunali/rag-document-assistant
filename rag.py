@@ -173,7 +173,7 @@ class Retriever:
 
     def query(self, question: str, k: int = 4) -> list[Retrieved]:
         question = (question or "").strip()
-        if not question or not self.chunks:
+        if not question or not self.chunks or k <= 0:
             return []
         q = self.embed([question])[0]
         scores = _cosine(self.matrix, q)
