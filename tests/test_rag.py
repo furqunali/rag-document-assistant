@@ -62,3 +62,13 @@ def test_empty_index_is_safe():
     assert r.query("anything") == []
     res = rag.answer("anything", [])
     assert res["grounded"] is False
+
+
+def test_query_with_zero_k_returns_no_results():
+    r = _retriever()
+    assert r.query("refund", k=0) == []
+
+
+def test_query_never_returns_more_than_available_chunks():
+    r = _retriever()
+    assert len(r.query("refund", k=999)) == len(r.chunks)
