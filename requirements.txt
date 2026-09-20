@@ -1,6 +1,6 @@
 # Hugging Face Space runtime.
 # Key-free retrieval remains available; Gemini generation is optional at runtime.
-gradio==4.44.1
+gradio==5.49.1
 numpy>=1.26,<3
 pypdf>=4.2,<6
 sentence-transformers>=2.7,<4
