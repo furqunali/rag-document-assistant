@@ -5,6 +5,7 @@ import math
 from typing import Callable
 
 from retrieval import Retrieved
+from agents import run_multi_agent
 
 IDK = ("I don't have enough information in the provided documents to answer that. "
        "Try rephrasing, or upload a document that covers this topic.")
@@ -31,15 +32,8 @@ def answer(question: str, hits: list[Retrieved], threshold: float = 0.15,
     top = hits[0].score if hits else 0.0
     if not hits or top < threshold:
         return {"answer": IDK, "grounded": False, "citations": [], "top_score": round(top, 3)}
-    citations = citations_for(hits)
-    body = hits[0].chunk.text
-    mode = "extractive"
-    if llm is not None:
-        try:
-            generated = llm(question, hits)
-            if generated and generated.strip():
-                body, mode = generated.strip(), "generative"
-        except Exception:
-            mode = "extractive (generation unavailable)"
-    return {"answer": body, "grounded": True, "mode": mode,
-            "citations": citations, "top_score": round(top, 3)}
+    result = run_multi_agent(question, hits, threshold, llm)
+    citations = citations_for(hits) if result.grounded else []
+    return {"answer": result.answer, "grounded": result.grounded, "mode": result.mode,
+            "citations": citations, "top_score": round(top, 3),
+            "agents": [{"name": d.name, "status": d.status, "details": d.details} for d in result.decisions]}
