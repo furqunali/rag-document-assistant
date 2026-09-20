@@ -5,7 +5,8 @@ from rag_config import ChunkConfig
 from models import Chunk
 
 def normalize_text(text: str) -> str:
-    value = (text or "").replace("\n", " ").replace("\t", " ")
+    value = (text or "").replace("\\n", " ").replace("\\t", " ")
+    value = value.replace("\n", " ").replace("\t", " ")
     return re.sub(r"\s+", " ", value).strip()
 
 def split_sentences(text: str) -> list[str]:
@@ -13,8 +14,7 @@ def split_sentences(text: str) -> list[str]:
     return re.split(r"(?<=[.!?])\s+", normalized) if normalized else []
 
 def chunk_text(text: str, source: str = "", chunk_size: int = 600, overlap: int = 0) -> list[Chunk]:
-    config = ChunkConfig(chunk_size, overlap)
-    config.validate()
+    config = ChunkConfig(chunk_size, overlap).validate()
     chunks: list[Chunk] = []
     buffer = ""
     index = 0
