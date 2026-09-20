@@ -1,10 +1,14 @@
 import pytest
 
-from document_loader_expanded import checksum, load_document, normalize_text
+from document_loader_expanded import checksum, load_document, normalize_source, normalize_text
 
 
 def test_normalize_text_is_stable():
     assert normalize_text("a\r\nb\t  c") == "a\nb c"
+
+
+def test_normalize_source_stabilizes_separators():
+    assert normalize_source("  docs\\\\guide.md  ") == "docs/guide.md"
 
 
 def test_checksum_is_deterministic():
