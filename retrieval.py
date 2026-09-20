@@ -1,27 +1,21 @@
 """Nearest-neighbour retrieval primitives."""
 from __future__ import annotations
-
 from dataclasses import dataclass
 from typing import Callable
-
 import numpy as np
-
 from models import Chunk
 
 Vector = np.ndarray
 EmbedFn = Callable[[list[str]], np.ndarray]
 
-
 def cosine_scores(matrix: np.ndarray, vector: np.ndarray) -> np.ndarray:
     denominator = (np.linalg.norm(matrix, axis=1) * np.linalg.norm(vector)) + 1e-9
     return (matrix @ vector) / denominator
-
 
 @dataclass
 class Retrieved:
     chunk: Chunk
     score: float
-
 
 class Retriever:
     """Lazily computes document vectors and returns deterministic top-k matches."""
@@ -33,11 +27,9 @@ class Retriever:
 
     def query(self, question: str, k: int = 4) -> list[Retrieved]:
         question = (question or "").strip()
-        if not question:
-            raise ValueError("question must not be empty")
-        if k <= 0:
-            raise ValueError("k must be positive")
-        if not self.chunks:
+        # Empty questions and non-positive limits are valid no-op queries at the
+        # retrieval boundary; callers can then decide whether to ask for input.
+        if not question or k <= 0 or not self.chunks:
             return []
         if self.embed is None:
             raise ValueError("embed function is required when chunks are present")
@@ -46,8 +38,6 @@ class Retriever:
         vector = self.embed([question])[0]
         scores = cosine_scores(self.matrix, vector)
         limit = min(k, len(self.chunks))
-        order = sorted(
-            range(len(self.chunks)),
-            key=lambda i: (-float(scores[i]), self.chunks[i].index),
-        )
+        order = sorted(range(len(self.chunks)),
+                       key=lambda i: (-float(scores[i]), self.chunks[i].index))
         return [Retrieved(self.chunks[i], float(scores[i])) for i in order[:limit]]
