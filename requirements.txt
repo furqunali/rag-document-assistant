@@ -5,8 +5,8 @@ numpy>=1.26,<3
 pypdf>=4.2,<6
 sentence-transformers>=2.7,<4
 
-# Reusable async Gemini service used by gemini_adapter.py.
-furqunali-gemini-chatbot @ git+https://github.com/furqunali/gemini-chatbot.git@feat/package-for-rag-integration
+# Reusable async Gemini service pinned to a merged commit for reproducible builds.
+furqunali-gemini-chatbot @ git+https://github.com/furqunali/gemini-chatbot.git@175a999f17ac843f5a63027389da599ea696a4a8
 
-# Optional legacy OpenAI generation.
+# Optional OpenAI generation.
 # openai>=1.30
