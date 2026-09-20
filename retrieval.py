@@ -4,7 +4,6 @@ from dataclasses import dataclass
 from typing import Callable
 import numpy as np
 from models import Chunk
-
 Vector = np.ndarray
 EmbedFn = Callable[[list[str]], np.ndarray]
 
@@ -19,7 +18,6 @@ class Retrieved:
 
 class Retriever:
     """Lazily computes document vectors and returns deterministic top-k matches."""
-
     def __init__(self, chunks: list[Chunk], embed: EmbedFn | None = None) -> None:
         self.chunks = chunks
         self.embed = embed
@@ -27,9 +25,11 @@ class Retriever:
 
     def query(self, question: str, k: int = 4) -> list[Retrieved]:
         question = (question or "").strip()
-        # Empty questions and non-positive limits are valid no-op queries at the
-        # retrieval boundary; callers can then decide whether to ask for input.
-        if not question or k <= 0 or not self.chunks:
+        if not question:
+            raise ValueError("question is required")
+        if k <= 0:
+            raise ValueError("k must be positive")
+        if not self.chunks:
             return []
         if self.embed is None:
             raise ValueError("embed function is required when chunks are present")
@@ -38,6 +38,5 @@ class Retriever:
         vector = self.embed([question])[0]
         scores = cosine_scores(self.matrix, vector)
         limit = min(k, len(self.chunks))
-        order = sorted(range(len(self.chunks)),
-                       key=lambda i: (-float(scores[i]), self.chunks[i].index))
+        order = sorted(range(len(self.chunks)), key=lambda i: (-float(scores[i]), self.chunks[i].index))
         return [Retrieved(self.chunks[i], float(scores[i])) for i in order[:limit]]
