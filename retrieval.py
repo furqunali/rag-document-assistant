@@ -17,16 +17,24 @@ class Retrieved:
     score: float
 
 class Retriever:
-    """Pre-computes document vectors and returns deterministic top-k matches."""
-    def __init__(self, chunks: list[Chunk], embed: EmbedFn) -> None:
+    """Lazily computes document vectors and returns deterministic top-k matches."""
+    def __init__(self, chunks: list[Chunk], embed: EmbedFn | None = None) -> None:
         self.chunks = chunks
         self.embed = embed
-        self.matrix = embed([c.text for c in chunks]) if chunks else np.zeros((0, 1))
+        self.matrix: np.ndarray | None = None
 
     def query(self, question: str, k: int = 4) -> list[Retrieved]:
         question = (question or "").strip()
-        if not question or not self.chunks or k <= 0:
+        if not question:
+            raise ValueError("question must not be empty")
+        if k <= 0:
+            raise ValueError("k must be positive")
+        if not self.chunks:
             return []
+        if self.embed is None:
+            raise ValueError("embed function is required when chunks are present")
+        if self.matrix is None:
+            self.matrix = self.embed([c.text for c in self.chunks])
         vector = self.embed([question])[0]
         scores = cosine_scores(self.matrix, vector)
         limit = min(k, len(self.chunks))
