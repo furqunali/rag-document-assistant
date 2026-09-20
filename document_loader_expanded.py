@@ -22,6 +22,15 @@ class LoadedDocument:
             raise ValueError("checksum is required")
 
 
+def normalize_source(source: str) -> str:
+    """Normalize source identifiers for stable ingestion identity."""
+    if not isinstance(source, str):
+        raise TypeError("source must be a string")
+    normalized = source.strip().replace("\\", "/")
+    normalized = re.sub(r"/+", "/", normalized)
+    return normalized
+
+
 def normalize_text(text: str) -> str:
     """Normalize line endings and collapse repeated whitespace."""
     if not isinstance(text, str):
@@ -36,7 +45,10 @@ def checksum(text: str) -> str:
 
 def load_document(source: str, text: str, metadata: dict[str, str] | None = None) -> LoadedDocument:
     """Build a validated document with a content-derived checksum."""
+    normalized_source = normalize_source(source)
+    if not normalized_source:
+        raise ValueError("source is required")
     normalized = normalize_text(text)
     if not normalized:
         raise ValueError("document text is empty")
-    return LoadedDocument(source, normalized, checksum(normalized), dict(metadata or {}))
+    return LoadedDocument(normalized_source, normalized, checksum(normalized), dict(metadata or {}))
