@@ -5,7 +5,7 @@ from rag_config import ChunkConfig
 from models import Chunk
 
 def normalize_text(text: str) -> str:
-    value = (text or "").replace("\\n", " ").replace("\\t", " ")
+    value = (text or "").replace("\n", " ").replace("\t", " ")
     value = value.replace("\n", " ").replace("\t", " ")
     return re.sub(r"\s+", " ", value).strip()
 
