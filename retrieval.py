@@ -33,8 +33,10 @@ class Retriever:
 
     def query(self, question: str, k: int = 4) -> list[Retrieved]:
         question = (question or "").strip()
-        if not question or k <= 0:
-            return []
+        if not question:
+            raise ValueError("question must not be empty")
+        if k <= 0:
+            raise ValueError("k must be positive")
         if not self.chunks:
             return []
         if self.embed is None:
