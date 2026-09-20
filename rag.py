@@ -1,7 +1,7 @@
 """Public RAG facade preserving the original API.
 
 The implementation is split into focused modules for chunking, embeddings,
-retrieval, answer assembly, and shared configuration.
+retrieval, answer assembly, and provider adapters.
 """
 from __future__ import annotations
 
@@ -16,41 +16,46 @@ from retrieval import Retrieved, Retriever
 
 
 def maybe_llm() -> Callable[[str, list[Retrieved]], str] | None:
-    """Return a grounded LLM callable when a supported API key is configured."""
-    gem = os.getenv("GEMINI_API_KEY")
-    oai = os.getenv("OPENAI_API_KEY")
+    """Return a grounded LLM callable when a supported API key is configured.
 
-    def context(hits: list[Retrieved]) -> str:
-        return "\\n\\n".join(f"[{h.chunk.source} #{h.chunk.index}] {h.chunk.text}" for h in hits)
-
-    def prompt(question: str, hits: list[Retrieved]) -> str:
-        return ("Answer the question using ONLY the context below. If the context is "
-                "insufficient, say you don't know. Cite sources like [source #n].\\n\\n"
-                f"Context:\\n{context(hits)}\\n\\nQuestion: {question}\\nAnswer:")
-
-    if gem:
+    Gemini is delegated to the reusable async chatbot service. The OpenAI path
+    remains as a backward-compatible provider fallback.
+    """
+    if os.getenv("GEMINI_API_KEY", "").strip():
         try:
-            import google.generativeai as genai
-            genai.configure(api_key=gem)
-            model = genai.GenerativeModel(os.getenv("GEMINI_MODEL", "gemini-1.5-flash"))
-            def generate(question, hits):
-                return model.generate_content(prompt(question, hits)).text.strip()
-            return generate
+            from gemini_adapter import build_gemini_llm
+            return build_gemini_llm()
         except Exception:
             return None
-    if oai:
+
+    if os.getenv("OPENAI_API_KEY", "").strip():
         try:
             from openai import OpenAI
-            client = OpenAI(api_key=oai)
-            def generate(question, hits):
+
+            client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
+
+            def context(hits: list[Retrieved]) -> str:
+                return "\n\n".join(
+                    f"[{h.chunk.source} #{h.chunk.index}] {h.chunk.text}" for h in hits
+                )
+
+            def generate(question: str, hits: list[Retrieved]) -> str:
+                prompt = (
+                    "Answer the question using ONLY the context below. "
+                    "If the context is insufficient, say you don't know. "
+                    "Cite sources like [source #n].\n\n"
+                    f"Context:\n{context(hits)}\n\nQuestion: {question}\nAnswer:"
+                )
                 response = client.chat.completions.create(
                     model=os.getenv("OPENAI_MODEL", "gpt-4o-mini"),
-                    messages=[{"role": "user", "content": prompt(question, hits)}],
+                    messages=[{"role": "user", "content": prompt}],
                 )
-                return response.choices[0].message.content.strip()
+                return (response.choices[0].message.content or "").strip()
+
             return generate
         except Exception:
             return None
+
     return None
 
 

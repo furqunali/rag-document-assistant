@@ -1,16 +1,12 @@
 # Hugging Face Space runtime.
-# Key-free by default. Retrieval works even if the neural model can't load,
-# thanks to the pure-Python TF-IDF fallback in rag.py.
+# Key-free retrieval remains available; Gemini generation is optional at runtime.
 gradio==4.44.1
 numpy>=1.26,<3
 pypdf>=4.2,<6
-
-# Neural embeddings (optional but recommended). If present, rag.py uses
-# sentence-transformers automatically; if the install/download is unavailable,
-# it transparently falls back to TF-IDF so the Space still runs.
 sentence-transformers>=2.7,<4
 
-# Optional LLM generation — uncomment ONE and set the matching key as an HF Secret
-# to upgrade from extractive to grounded generative answers. Not required.
-# google-generativeai>=0.7      # set GEMINI_API_KEY
-# openai>=1.30                  # set OPENAI_API_KEY
+# Reusable async Gemini service used by gemini_adapter.py.
+furqunali-gemini-chatbot @ git+https://github.com/furqunali/gemini-chatbot.git@feat/package-for-rag-integration
+
+# Optional legacy OpenAI generation.
+# openai>=1.30
