@@ -17,7 +17,6 @@ class Retrieved:
     score: float
 
 class Retriever:
-    """Lazily computes document vectors and returns deterministic top-k matches."""
     def __init__(self, chunks: list[Chunk], embed: EmbedFn | None = None) -> None:
         self.chunks = chunks
         self.embed = embed
@@ -25,11 +24,7 @@ class Retriever:
 
     def query(self, question: str, k: int = 4) -> list[Retrieved]:
         question = (question or "").strip()
-        if not question:
-            raise ValueError("question is required")
-        if k <= 0:
-            raise ValueError("k must be positive")
-        if not self.chunks:
+        if not question or k <= 0 or not self.chunks:
             return []
         if self.embed is None:
             raise ValueError("embed function is required when chunks are present")
