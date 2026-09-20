@@ -24,7 +24,7 @@ class MultiAgentResult:
     decisions: list[AgentDecision]
 
 
-def retrieval_agent(hits: list[Retrieved], threshold: float) -> AgentDecision:
+def retrieval_agent(hits: list[Retrieved], threshold: float = 0.5) -> AgentDecision:
     score = hits[0].score if hits else 0.0
     status = "pass" if hits and score >= threshold else "abstain"
     return AgentDecision("retrieval_agent", status, f"top_score={score:.3f}")
@@ -59,7 +59,7 @@ def synthesis_agent(
 def run_multi_agent(
     question: str,
     hits: list[Retrieved],
-    threshold: float,
+    threshold: float = 0.5,
     llm: Callable[[str, list[Retrieved]], str] | None = None,
 ) -> MultiAgentResult:
     retrieval = retrieval_agent(hits, threshold)
