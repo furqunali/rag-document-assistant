@@ -25,3 +25,8 @@ def test_load_document_populates_checksum_and_metadata():
 def test_empty_documents_are_rejected():
     with pytest.raises(ValueError):
         load_document("empty.md", "   ")
+
+
+def test_load_document_normalizes_source_identifier():
+    document = load_document(" docs\\\\guide.md ", "content")
+    assert document.source == "docs/guide.md"
