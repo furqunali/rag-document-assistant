@@ -13,7 +13,8 @@ def split_sentences(text: str) -> list[str]:
     return re.split(r"(?<=[.!?])\s+", normalized) if normalized else []
 
 def chunk_text(text: str, source: str = "", chunk_size: int = 600, overlap: int = 0) -> list[Chunk]:
-    config = ChunkConfig(chunk_size, overlap).validate()
+    config = ChunkConfig(chunk_size, overlap)
+    config.validate()
     chunks: list[Chunk] = []
     buffer = ""
     index = 0
