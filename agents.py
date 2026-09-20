@@ -47,7 +47,10 @@ def synthesis_agent(
 ) -> tuple[str, str]:
     if llm is None:
         return hits[0].chunk.text, "extractive"
-    generated = llm(question, hits)
+    try:
+        generated = llm(question, hits)
+    except Exception:
+        return hits[0].chunk.text, "extractive (generation unavailable)"
     if not generated or not generated.strip():
         return hits[0].chunk.text, "extractive"
     return generated.strip(), "generative"
