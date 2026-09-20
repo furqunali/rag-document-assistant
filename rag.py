@@ -8,7 +8,7 @@ from __future__ import annotations
 import os
 from typing import Callable
 
-from answering import IDK, answer
+from answering import IDK, answer\nfrom agents import run_multi_agent
 from chunking import chunk_text
 from embeddings import TfidfEmbedder, build_embedder
 from models import Chunk
@@ -61,5 +61,5 @@ def maybe_llm() -> Callable[[str, list[Retrieved]], str] | None:
 
 __all__ = [
     "IDK", "Chunk", "Retrieved", "Retriever", "TfidfEmbedder",
-    "answer", "build_embedder", "chunk_text", "maybe_llm",
+    "answer", "build_embedder", "chunk_text", "maybe_llm", "run_multi_agent",
 ]
