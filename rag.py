@@ -8,7 +8,8 @@ from __future__ import annotations
 import os
 from typing import Callable
 
-from answering import IDK, answer\nfrom agents import run_multi_agent
+from answering import IDK, answer
+from agents import run_multi_agent
 from chunking import chunk_text
 from embeddings import TfidfEmbedder, build_embedder
 from models import Chunk
