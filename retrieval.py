@@ -8,6 +8,15 @@ Vector = np.ndarray
 EmbedFn = Callable[[list[str]], np.ndarray]
 
 def cosine_scores(matrix: np.ndarray, vector: np.ndarray) -> np.ndarray:
+    """Return row-wise cosine scores with explicit shape validation."""
+    matrix = np.asarray(matrix)
+    vector = np.asarray(vector)
+    if matrix.ndim != 2:
+        raise ValueError("matrix must be a 2D array")
+    if vector.ndim != 1:
+        raise ValueError("vector must be a 1D array")
+    if matrix.shape[1] != vector.shape[0]:
+        raise ValueError("matrix and vector dimensions must match")
     denominator = (np.linalg.norm(matrix, axis=1) * np.linalg.norm(vector)) + 1e-9
     return (matrix @ vector) / denominator
 
