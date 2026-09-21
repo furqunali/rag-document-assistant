@@ -1,5 +1,6 @@
 from pathlib import Path
-from rag_cli import load_chunks
+import pytest
+from rag_cli import load_chunks, main
 
 def test_load_chunks_reads_markdown_and_text(tmp_path: Path):
     (tmp_path/"a.md").write_text("Refunds are allowed within 30 days.",encoding="utf-8")
@@ -11,3 +12,11 @@ def test_load_chunks_reads_markdown_and_text(tmp_path: Path):
 def test_load_chunks_ignores_other_extensions(tmp_path: Path):
     (tmp_path/"a.csv").write_text("ignored",encoding="utf-8")
     assert load_chunks([tmp_path])==[]
+
+def test_main_rejects_non_finite_or_out_of_range_threshold(tmp_path: Path, monkeypatch):
+    doc=tmp_path/"doc.md"
+    doc.write_text("Refunds are allowed within 30 days.",encoding="utf-8")
+    for value in ("nan", "inf", "-inf", "-0.1", "1.1"):
+        monkeypatch.setattr("sys.argv", ["rag_cli", "refunds", str(doc), "--threshold", value])
+        with pytest.raises(SystemExit, match="--threshold"):
+            main()
