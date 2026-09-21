@@ -20,7 +20,11 @@ def load_chunks(paths):
         candidates=sorted(path.rglob("*")) if path.is_dir() else [path]
         for candidate in candidates:
             if candidate.is_file() and candidate.suffix.lower() in {".txt",".md"}:
-                chunks.extend(chunk_text(candidate.read_text(encoding="utf-8"),candidate.as_posix()))
+                try:
+                    content = candidate.read_text(encoding="utf-8")
+                except (OSError, UnicodeDecodeError) as exc:
+                    raise ValueError(f"unable to read document: {candidate}") from exc
+                chunks.extend(chunk_text(content, candidate.as_posix()))
     return chunks
 
 def main():
@@ -28,7 +32,10 @@ def main():
     if a.top_k<=0: raise SystemExit("--top-k must be positive")
     if not math.isfinite(a.threshold) or not 0 <= a.threshold <= 1:
         raise SystemExit("--threshold must be a finite value between 0 and 1")
-    chunks=load_chunks(a.paths)
+    try:
+        chunks=load_chunks(a.paths)
+    except ValueError as exc:
+        raise SystemExit(str(exc)) from exc
     if not chunks: raise SystemExit("No .txt or .md documents found.")
     embedder=TfidfEmbedder().fit([c.text for c in chunks])
     hits=Retriever(chunks,embedder).query(a.question,k=a.top_k)
