@@ -1,6 +1,7 @@
 """CLI for deterministic, local RAG queries."""
 from __future__ import annotations
 import argparse, json
+import math
 from pathlib import Path
 from answering import answer
 from chunking import chunk_text
@@ -25,6 +26,8 @@ def load_chunks(paths):
 def main():
     a=build_parser().parse_args()
     if a.top_k<=0: raise SystemExit("--top-k must be positive")
+    if not math.isfinite(a.threshold) or not 0 <= a.threshold <= 1:
+        raise SystemExit("--threshold must be a finite value between 0 and 1")
     chunks=load_chunks(a.paths)
     if not chunks: raise SystemExit("No .txt or .md documents found.")
     embedder=TfidfEmbedder().fit([c.text for c in chunks])
