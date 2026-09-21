@@ -20,3 +20,10 @@ def test_main_rejects_non_finite_or_out_of_range_threshold(tmp_path: Path, monke
         monkeypatch.setattr("sys.argv", ["rag_cli", "refunds", str(doc), f"--threshold={value}"])
         with pytest.raises(SystemExit, match="--threshold"):
             main()
+
+
+def test_load_chunks_reports_unreadable_text(tmp_path: Path):
+    path = tmp_path / "broken.txt"
+    path.write_bytes(bytes([0xFF, 0xFE, 0xFA]))
+    with pytest.raises(ValueError, match="unable to read document"):
+        load_chunks([path])
