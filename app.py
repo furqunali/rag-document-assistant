@@ -32,8 +32,8 @@ def _read_file(path: str) -> str:
         try:
             from pypdf import PdfReader
             return "\n".join((pg.extract_text() or "") for pg in PdfReader(str(p)).pages)
-        except Exception:
-            return ""
+        except Exception as exc:
+            raise ValueError(f"unable to read PDF: {exc}") from exc
     return ""
 
 
@@ -55,11 +55,19 @@ def ingest_uploads(files):
     if not files:
         return None, "Upload one or more documents, or click **Load sample docs**."
     named = []
+    errors = []
     for f in files:
-        txt = _read_file(f)
+        try:
+            txt = _read_file(f)
+        except ValueError as exc:
+            errors.append(f"{Path(f).name}: {exc}")
+            continue
         if txt.strip():
             named.append((Path(f).name, txt))
-    return _index_from_texts(named)
+    retriever, status = _index_from_texts(named)
+    if errors:
+        status += "\\n\\n⚠️ Skipped unreadable file(s): " + "; ".join(errors)
+    return retriever, status
 
 
 def load_samples():
