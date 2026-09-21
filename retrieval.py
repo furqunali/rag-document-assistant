@@ -38,8 +38,16 @@ class Retriever:
         if self.embed is None:
             raise ValueError("embed function is required when chunks are present")
         if self.matrix is None:
-            self.matrix = self.embed([c.text for c in self.chunks])
-        vector = self.embed([question])[0]
+            matrix = np.asarray(self.embed([c.text for c in self.chunks]))
+            if matrix.ndim != 2:
+                raise ValueError("embedding matrix must be 2D")
+            if matrix.shape[0] != len(self.chunks):
+                raise ValueError("embedding matrix row count must match chunks")
+            self.matrix = matrix
+        query_embeddings = np.asarray(self.embed([question]))
+        if query_embeddings.ndim != 2 or query_embeddings.shape[0] != 1:
+            raise ValueError("query embedding must contain exactly one vector")
+        vector = query_embeddings[0]
         scores = cosine_scores(self.matrix, vector)
         limit = min(k, len(self.chunks))
         order = sorted(range(len(self.chunks)), key=lambda i: (-float(scores[i]), self.chunks[i].index))
