@@ -17,6 +17,6 @@ def test_main_rejects_non_finite_or_out_of_range_threshold(tmp_path: Path, monke
     doc=tmp_path/"doc.md"
     doc.write_text("Refunds are allowed within 30 days.",encoding="utf-8")
     for value in ("nan", "inf", "-inf", "-0.1", "1.1"):
-        monkeypatch.setattr("sys.argv", ["rag_cli", "refunds", str(doc), "--threshold", value])
+        monkeypatch.setattr("sys.argv", ["rag_cli", "refunds", str(doc), f"--threshold={value}"])
         with pytest.raises(SystemExit, match="--threshold"):
             main()
