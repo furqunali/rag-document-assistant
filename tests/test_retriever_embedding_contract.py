@@ -6,7 +6,7 @@ from models import Chunk
 
 
 def test_retriever_rejects_embedding_row_count_mismatch():
-    chunks = [Chunk("a", "alpha", 0), Chunk("b", "beta", 1)]
+    chunks = [Chunk("alpha", "a", 0), Chunk("beta", "b", 1)]
 
     def embed(texts):
         if len(texts) == 2:
