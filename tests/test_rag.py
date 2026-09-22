@@ -1,9 +1,11 @@
 import pytest
+import numpy as np
 
 """RAG logic tests — run without downloading any model (TF-IDF path)."""
 from pathlib import Path
 
 import rag
+from retrieval import cosine_scores
 
 DOC = (Path(__file__).resolve().parents[1] / "sample_docs" / "company_handbook.md")
 
@@ -89,3 +91,17 @@ def test_query_with_zero_k_returns_no_results():
 def test_query_never_returns_more_than_available_chunks():
     r = _retriever()
     assert len(r.query("refund", k=999)) == len(r.chunks)
+
+
+def test_query_rejects_non_integer_k():
+    r = _retriever()
+    with pytest.raises(ValueError, match="k must be an integer"):
+        r.query("refund", k=1.5)  # type: ignore[arg-type]
+    with pytest.raises(ValueError, match="k must be an integer"):
+        r.query("refund", k=True)  # type: ignore[arg-type]
+
+
+def test_query_rejects_non_string_question():
+    r = _retriever()
+    with pytest.raises(ValueError, match="question must be a string"):
+        r.query(123)  # type: ignore[arg-type]

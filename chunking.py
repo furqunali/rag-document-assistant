@@ -1,8 +1,11 @@
 """Document chunking utilities used by the RAG pipeline."""
 from __future__ import annotations
+
 import re
+
 from rag_config import ChunkConfig
 from models import Chunk
+
 
 def normalize_text(text: str) -> str:
     value = (text or "").replace("\\n", " ").replace("\\t", " ")
