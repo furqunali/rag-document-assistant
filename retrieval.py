@@ -47,7 +47,7 @@ class Retriever:
             raise ValueError("question must be a string")
         question = question.strip()
         if not isinstance(k, int) or isinstance(k, bool):
-            raise ValueError("k must be an integer")
+            raise ValueError("k must be an integer")  # noqa: TRY004 - ValueError is this module's validation convention
         if not question or k <= 0 or not self.chunks:
             return []
         if self.embed is None:
