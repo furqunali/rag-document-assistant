@@ -5,6 +5,7 @@ import numpy as np
 from pathlib import Path
 
 import rag
+from retrieval import cosine_scores
 
 DOC = (Path(__file__).resolve().parents[1] / "sample_docs" / "company_handbook.md")
 
@@ -102,4 +103,4 @@ def test_query_rejects_non_integer_k():
 
 def test_cosine_scores_rejects_nonfinite_embeddings():
     with pytest.raises(ValueError, match="finite"):
-        rag.cosine_scores(np.array([[1.0, np.nan]]), np.array([1.0, 0.0]))
+        cosine_scores(np.array([[1.0, np.nan]]), np.array([1.0, 0.0]))
