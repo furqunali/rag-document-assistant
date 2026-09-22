@@ -98,4 +98,8 @@ def test_query_rejects_non_integer_k():
         r.query("refund", k=1.5)  # type: ignore[arg-type]
     with pytest.raises(ValueError, match="k must be an integer"):
         r.query("refund", k=True)  # type: ignore[arg-type]
-\n\ndef test_cosine_scores_rejects_nonfinite_embeddings():\n    with pytest.raises(ValueError, match="finite"):\n        rag.cosine_scores(np.array([[1.0, np.nan]]), np.array([1.0, 0.0]))\n
+
+
+def test_cosine_scores_rejects_nonfinite_embeddings():
+    with pytest.raises(ValueError, match="finite"):
+        rag.cosine_scores(np.array([[1.0, np.nan]]), np.array([1.0, 0.0]))
