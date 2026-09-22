@@ -1,4 +1,5 @@
 import pytest
+import numpy as np
 
 """RAG logic tests — run without downloading any model (TF-IDF path)."""
 from pathlib import Path
