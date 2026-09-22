@@ -2,6 +2,7 @@ from models import Chunk
 from retrieval import Retrieved
 from retrieval_quality_profile import profile_retrieval_quality
 
+
 def r(source,score,index): return Retrieved(Chunk("text",source,index),score)
 
 def test_profiles_scores_and_sources():

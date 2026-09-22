@@ -1,8 +1,8 @@
-import pytest
-from retrieval_diagnostics import score_summary, has_relevant_result
+from retrieval_diagnostics import has_relevant_result, score_summary
+
 
 def test_score_summary_accepts_generator():
-    result = score_summary(({"score": value} for value in [0.1, 0.3]))
+    result = score_summary({"score": value} for value in [0.1, 0.3])
     assert result["count"] == 2.0
     assert result["max"] == 0.3
 

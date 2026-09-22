@@ -1,5 +1,6 @@
-from retrieval_threshold_gate import RetrievalGate
 from retrieval_quality_report import retrieval_report_dict, retrieval_report_json
+from retrieval_threshold_gate import RetrievalGate
+
 
 def test_retrieval_export_is_deterministic():
     result = RetrievalGate(4, 3, True)

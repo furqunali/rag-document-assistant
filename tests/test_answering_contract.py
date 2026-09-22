@@ -1,7 +1,8 @@
+import pytest
+
+from answering import IDK, answer, citations_for, validate_threshold
 from models import Chunk
 from retrieval import Retrieved
-from answering import IDK, answer, citations_for, validate_threshold
-import pytest
 
 
 def hit(text="answer", source="doc", index=1, score=0.8):

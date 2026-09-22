@@ -3,10 +3,13 @@
 Reusable production utilities for the retrieval subsystem.
 """
 from __future__ import annotations
-from dataclasses import dataclass, field
-from typing import Iterable, Mapping, Sequence, Any
-import re
+
 import math
+import re
+from collections.abc import Iterable, Mapping, Sequence
+from dataclasses import dataclass, field
+from typing import Any
+
 
 @dataclass(frozen=True)
 class RetrievalRule1:
@@ -14,7 +17,7 @@ class RetrievalRule1:
     weight: float = 0.2
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule1":
+    def validate(self) -> RetrievalRule1:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -27,7 +30,7 @@ class RetrievalRule2:
     weight: float = 0.3
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule2":
+    def validate(self) -> RetrievalRule2:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -40,7 +43,7 @@ class RetrievalRule3:
     weight: float = 0.4
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule3":
+    def validate(self) -> RetrievalRule3:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -53,7 +56,7 @@ class RetrievalRule4:
     weight: float = 0.5
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule4":
+    def validate(self) -> RetrievalRule4:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -66,7 +69,7 @@ class RetrievalRule5:
     weight: float = 0.6
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule5":
+    def validate(self) -> RetrievalRule5:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -79,7 +82,7 @@ class RetrievalRule6:
     weight: float = 0.7
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule6":
+    def validate(self) -> RetrievalRule6:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -92,7 +95,7 @@ class RetrievalRule7:
     weight: float = 0.1
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule7":
+    def validate(self) -> RetrievalRule7:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -105,7 +108,7 @@ class RetrievalRule8:
     weight: float = 0.2
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule8":
+    def validate(self) -> RetrievalRule8:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -118,7 +121,7 @@ class RetrievalRule9:
     weight: float = 0.3
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule9":
+    def validate(self) -> RetrievalRule9:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -131,7 +134,7 @@ class RetrievalRule10:
     weight: float = 0.4
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule10":
+    def validate(self) -> RetrievalRule10:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -144,7 +147,7 @@ class RetrievalRule11:
     weight: float = 0.5
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule11":
+    def validate(self) -> RetrievalRule11:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -157,7 +160,7 @@ class RetrievalRule12:
     weight: float = 0.6
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule12":
+    def validate(self) -> RetrievalRule12:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -170,7 +173,7 @@ class RetrievalRule13:
     weight: float = 0.7
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule13":
+    def validate(self) -> RetrievalRule13:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -183,7 +186,7 @@ class RetrievalRule14:
     weight: float = 0.1
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule14":
+    def validate(self) -> RetrievalRule14:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -196,7 +199,7 @@ class RetrievalRule15:
     weight: float = 0.2
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule15":
+    def validate(self) -> RetrievalRule15:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -209,7 +212,7 @@ class RetrievalRule16:
     weight: float = 0.3
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule16":
+    def validate(self) -> RetrievalRule16:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -222,7 +225,7 @@ class RetrievalRule17:
     weight: float = 0.4
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule17":
+    def validate(self) -> RetrievalRule17:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -235,7 +238,7 @@ class RetrievalRule18:
     weight: float = 0.5
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule18":
+    def validate(self) -> RetrievalRule18:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -248,7 +251,7 @@ class RetrievalRule19:
     weight: float = 0.6
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule19":
+    def validate(self) -> RetrievalRule19:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -261,7 +264,7 @@ class RetrievalRule20:
     weight: float = 0.7
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule20":
+    def validate(self) -> RetrievalRule20:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -274,7 +277,7 @@ class RetrievalRule21:
     weight: float = 0.1
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule21":
+    def validate(self) -> RetrievalRule21:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -287,7 +290,7 @@ class RetrievalRule22:
     weight: float = 0.2
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule22":
+    def validate(self) -> RetrievalRule22:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -300,7 +303,7 @@ class RetrievalRule23:
     weight: float = 0.3
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule23":
+    def validate(self) -> RetrievalRule23:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -313,7 +316,7 @@ class RetrievalRule24:
     weight: float = 0.4
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule24":
+    def validate(self) -> RetrievalRule24:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -326,7 +329,7 @@ class RetrievalRule25:
     weight: float = 0.5
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule25":
+    def validate(self) -> RetrievalRule25:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -339,7 +342,7 @@ class RetrievalRule26:
     weight: float = 0.6
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule26":
+    def validate(self) -> RetrievalRule26:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -352,7 +355,7 @@ class RetrievalRule27:
     weight: float = 0.7
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule27":
+    def validate(self) -> RetrievalRule27:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -365,7 +368,7 @@ class RetrievalRule28:
     weight: float = 0.1
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule28":
+    def validate(self) -> RetrievalRule28:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -378,7 +381,7 @@ class RetrievalRule29:
     weight: float = 0.2
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule29":
+    def validate(self) -> RetrievalRule29:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -391,7 +394,7 @@ class RetrievalRule30:
     weight: float = 0.3
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule30":
+    def validate(self) -> RetrievalRule30:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -404,7 +407,7 @@ class RetrievalRule31:
     weight: float = 0.4
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule31":
+    def validate(self) -> RetrievalRule31:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -417,7 +420,7 @@ class RetrievalRule32:
     weight: float = 0.5
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule32":
+    def validate(self) -> RetrievalRule32:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -430,7 +433,7 @@ class RetrievalRule33:
     weight: float = 0.6
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule33":
+    def validate(self) -> RetrievalRule33:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -443,7 +446,7 @@ class RetrievalRule34:
     weight: float = 0.7
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule34":
+    def validate(self) -> RetrievalRule34:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -456,7 +459,7 @@ class RetrievalRule35:
     weight: float = 0.1
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule35":
+    def validate(self) -> RetrievalRule35:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -469,7 +472,7 @@ class RetrievalRule36:
     weight: float = 0.2
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule36":
+    def validate(self) -> RetrievalRule36:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -482,7 +485,7 @@ class RetrievalRule37:
     weight: float = 0.3
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule37":
+    def validate(self) -> RetrievalRule37:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -495,7 +498,7 @@ class RetrievalRule38:
     weight: float = 0.4
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule38":
+    def validate(self) -> RetrievalRule38:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -508,7 +511,7 @@ class RetrievalRule39:
     weight: float = 0.5
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule39":
+    def validate(self) -> RetrievalRule39:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -521,7 +524,7 @@ class RetrievalRule40:
     weight: float = 0.6
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule40":
+    def validate(self) -> RetrievalRule40:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -534,7 +537,7 @@ class RetrievalRule41:
     weight: float = 0.7
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule41":
+    def validate(self) -> RetrievalRule41:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -547,7 +550,7 @@ class RetrievalRule42:
     weight: float = 0.1
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule42":
+    def validate(self) -> RetrievalRule42:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -560,7 +563,7 @@ class RetrievalRule43:
     weight: float = 0.2
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule43":
+    def validate(self) -> RetrievalRule43:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -573,7 +576,7 @@ class RetrievalRule44:
     weight: float = 0.3
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule44":
+    def validate(self) -> RetrievalRule44:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -586,7 +589,7 @@ class RetrievalRule45:
     weight: float = 0.4
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule45":
+    def validate(self) -> RetrievalRule45:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -599,7 +602,7 @@ class RetrievalRule46:
     weight: float = 0.5
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule46":
+    def validate(self) -> RetrievalRule46:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -612,7 +615,7 @@ class RetrievalRule47:
     weight: float = 0.6
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule47":
+    def validate(self) -> RetrievalRule47:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -625,7 +628,7 @@ class RetrievalRule48:
     weight: float = 0.7
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule48":
+    def validate(self) -> RetrievalRule48:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -638,7 +641,7 @@ class RetrievalRule49:
     weight: float = 0.1
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule49":
+    def validate(self) -> RetrievalRule49:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -651,7 +654,7 @@ class RetrievalRule50:
     weight: float = 0.2
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule50":
+    def validate(self) -> RetrievalRule50:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -664,7 +667,7 @@ class RetrievalRule51:
     weight: float = 0.3
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule51":
+    def validate(self) -> RetrievalRule51:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -677,7 +680,7 @@ class RetrievalRule52:
     weight: float = 0.4
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule52":
+    def validate(self) -> RetrievalRule52:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -690,7 +693,7 @@ class RetrievalRule53:
     weight: float = 0.5
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule53":
+    def validate(self) -> RetrievalRule53:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -703,7 +706,7 @@ class RetrievalRule54:
     weight: float = 0.6
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule54":
+    def validate(self) -> RetrievalRule54:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -716,7 +719,7 @@ class RetrievalRule55:
     weight: float = 0.7
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule55":
+    def validate(self) -> RetrievalRule55:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -729,7 +732,7 @@ class RetrievalRule56:
     weight: float = 0.1
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule56":
+    def validate(self) -> RetrievalRule56:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -742,7 +745,7 @@ class RetrievalRule57:
     weight: float = 0.2
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule57":
+    def validate(self) -> RetrievalRule57:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -755,7 +758,7 @@ class RetrievalRule58:
     weight: float = 0.3
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule58":
+    def validate(self) -> RetrievalRule58:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -768,7 +771,7 @@ class RetrievalRule59:
     weight: float = 0.4
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule59":
+    def validate(self) -> RetrievalRule59:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -781,7 +784,7 @@ class RetrievalRule60:
     weight: float = 0.5
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule60":
+    def validate(self) -> RetrievalRule60:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -794,7 +797,7 @@ class RetrievalRule61:
     weight: float = 0.6
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule61":
+    def validate(self) -> RetrievalRule61:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -807,7 +810,7 @@ class RetrievalRule62:
     weight: float = 0.7
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule62":
+    def validate(self) -> RetrievalRule62:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -820,7 +823,7 @@ class RetrievalRule63:
     weight: float = 0.1
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule63":
+    def validate(self) -> RetrievalRule63:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -833,7 +836,7 @@ class RetrievalRule64:
     weight: float = 0.2
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule64":
+    def validate(self) -> RetrievalRule64:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -846,7 +849,7 @@ class RetrievalRule65:
     weight: float = 0.3
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule65":
+    def validate(self) -> RetrievalRule65:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -859,7 +862,7 @@ class RetrievalRule66:
     weight: float = 0.4
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule66":
+    def validate(self) -> RetrievalRule66:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -872,7 +875,7 @@ class RetrievalRule67:
     weight: float = 0.5
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule67":
+    def validate(self) -> RetrievalRule67:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -885,7 +888,7 @@ class RetrievalRule68:
     weight: float = 0.6
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule68":
+    def validate(self) -> RetrievalRule68:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -898,7 +901,7 @@ class RetrievalRule69:
     weight: float = 0.7
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule69":
+    def validate(self) -> RetrievalRule69:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -911,7 +914,7 @@ class RetrievalRule70:
     weight: float = 0.1
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule70":
+    def validate(self) -> RetrievalRule70:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -924,7 +927,7 @@ class RetrievalRule71:
     weight: float = 0.2
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule71":
+    def validate(self) -> RetrievalRule71:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -937,7 +940,7 @@ class RetrievalRule72:
     weight: float = 0.3
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule72":
+    def validate(self) -> RetrievalRule72:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -950,7 +953,7 @@ class RetrievalRule73:
     weight: float = 0.4
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule73":
+    def validate(self) -> RetrievalRule73:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -963,7 +966,7 @@ class RetrievalRule74:
     weight: float = 0.5
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule74":
+    def validate(self) -> RetrievalRule74:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -976,7 +979,7 @@ class RetrievalRule75:
     weight: float = 0.6
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule75":
+    def validate(self) -> RetrievalRule75:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -989,7 +992,7 @@ class RetrievalRule76:
     weight: float = 0.7
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule76":
+    def validate(self) -> RetrievalRule76:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -1002,7 +1005,7 @@ class RetrievalRule77:
     weight: float = 0.1
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule77":
+    def validate(self) -> RetrievalRule77:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -1015,7 +1018,7 @@ class RetrievalRule78:
     weight: float = 0.2
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule78":
+    def validate(self) -> RetrievalRule78:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -1028,7 +1031,7 @@ class RetrievalRule79:
     weight: float = 0.3
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule79":
+    def validate(self) -> RetrievalRule79:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -1041,7 +1044,7 @@ class RetrievalRule80:
     weight: float = 0.4
     enabled: bool = True
 
-    def validate(self) -> "RetrievalRule80":
+    def validate(self) -> RetrievalRule80:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:

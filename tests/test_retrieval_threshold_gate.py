@@ -2,6 +2,7 @@ from models import Chunk
 from retrieval import Retrieved
 from retrieval_threshold_gate import evaluate_retrieval_gate
 
+
 def r(score):
     return Retrieved(Chunk("text", "src", 0), score)
 

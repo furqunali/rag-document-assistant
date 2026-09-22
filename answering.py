@@ -2,10 +2,10 @@
 from __future__ import annotations
 
 import math
-from typing import Callable
+from collections.abc import Callable
 
-from retrieval import Retrieved
 from agents import run_multi_agent
+from retrieval import Retrieved
 
 IDK = ("I don't have enough information in the provided documents to answer that. "
        "Try rephrasing, or upload a document that covers this topic.")

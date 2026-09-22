@@ -1,9 +1,12 @@
 """Stable JSON export for retrieval threshold evaluations."""
 from __future__ import annotations
+
 import json
 from dataclasses import asdict
-from retrieval_threshold_gate import RetrievalGate
+
 from retrieval_report_schema import validate_retrieval_report
+from retrieval_threshold_gate import RetrievalGate
+
 
 def retrieval_report_dict(result: RetrievalGate) -> dict:
     if not isinstance(result, RetrievalGate):

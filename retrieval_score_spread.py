@@ -1,7 +1,10 @@
 """Deterministic spread metrics for retrieval scores."""
 from __future__ import annotations
-from typing import Iterable
+
+from collections.abc import Iterable
+
 from retrieval import Retrieved
+
 
 def score_spread(results: Iterable[Retrieved]) -> float:
     scores = [float(result.score) for result in results]

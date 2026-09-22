@@ -1,5 +1,6 @@
 from models import Chunk
 
+
 def test_chunk_preserves_text_and_source():
     chunk = Chunk("content", "manual.pdf", 4)
     assert chunk.text == "content"

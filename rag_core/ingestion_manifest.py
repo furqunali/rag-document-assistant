@@ -1,8 +1,8 @@
 """Deterministic manifest for ingested documents."""
 
-from dataclasses import dataclass, asdict
 import json
-from typing import Iterable
+from collections.abc import Iterable
+from dataclasses import asdict, dataclass
 
 
 @dataclass(frozen=True)

@@ -1,6 +1,9 @@
 import math
+
 import pytest
-from rag_config import ChunkConfig, AnswerConfig
+
+from rag_config import AnswerConfig, ChunkConfig
+
 
 def test_chunk_config_accepts_zero_overlap():
     assert ChunkConfig(chunk_size=100, overlap=0).validate().overlap == 0

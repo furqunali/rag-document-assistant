@@ -21,7 +21,7 @@ class TfidfEmbedder:
         self.vocab: dict[str, int] = {}
         self.idf: np.ndarray | None = None
 
-    def fit(self, corpus: list[str]) -> "TfidfEmbedder":
+    def fit(self, corpus: list[str]) -> TfidfEmbedder:
         df: dict[str, int] = {}
         docs = [set(tokenize(doc)) for doc in corpus]
         for tokens in docs:

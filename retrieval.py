@@ -1,12 +1,13 @@
 """Nearest-neighbour retrieval primitives."""
 from __future__ import annotations
 
+from collections.abc import Callable
 from dataclasses import dataclass
-from typing import Callable
 
 import numpy as np
 
 from models import Chunk
+
 Vector = np.ndarray
 EmbedFn = Callable[[list[str]], np.ndarray]
 

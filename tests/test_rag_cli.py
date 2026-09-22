@@ -1,6 +1,9 @@
 from pathlib import Path
+
 import pytest
+
 from rag_cli import load_chunks, main
+
 
 def test_load_chunks_reads_markdown_and_text(tmp_path: Path):
     (tmp_path/"a.md").write_text("Refunds are allowed within 30 days.",encoding="utf-8")

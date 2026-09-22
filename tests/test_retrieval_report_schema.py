@@ -1,5 +1,6 @@
 from retrieval_report_schema import validate_retrieval_report
 
+
 def test_valid_retrieval_schema():
     assert validate_retrieval_report({"results":4,"qualifying":3,"passed":True})
 

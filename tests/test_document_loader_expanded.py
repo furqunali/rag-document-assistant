@@ -1,6 +1,11 @@
 import pytest
 
-from document_loader_expanded import checksum, load_document, normalize_source, normalize_text
+from document_loader_expanded import (
+    checksum,
+    load_document,
+    normalize_source,
+    normalize_text,
+)
 
 
 def test_normalize_text_is_stable():

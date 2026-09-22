@@ -1,8 +1,11 @@
 """Deterministic ingestion preparation before embedding and indexing."""
 from __future__ import annotations
+
 from dataclasses import dataclass
+
 from document_loader_expanded import LoadedDocument
 from ingestion_dedup import duplicate_sources, unique_documents
+
 
 @dataclass(frozen=True)
 class IngestionBatch:

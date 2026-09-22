@@ -1,7 +1,10 @@
 """Policy findings derived from deterministic ingestion health."""
 from __future__ import annotations
+
 from dataclasses import dataclass
+
 from ingestion_health import IngestionHealth
+
 
 @dataclass(frozen=True)
 class IngestionFinding:

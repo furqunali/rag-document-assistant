@@ -1,8 +1,11 @@
 """Deterministic summary statistics for retrieved relevance scores."""
 from __future__ import annotations
+
+from collections.abc import Iterable
 from dataclasses import dataclass
-from typing import Iterable
+
 from retrieval import Retrieved
+
 
 @dataclass(frozen=True)
 class ScoreProfile:

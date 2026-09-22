@@ -1,6 +1,8 @@
 """Deduplicate loaded documents before expensive embedding work."""
 from __future__ import annotations
+
 from document_loader_expanded import LoadedDocument
+
 
 def unique_documents(documents: list[LoadedDocument]) -> list[LoadedDocument]:
     """Keep the first document for each checksum while preserving input order."""

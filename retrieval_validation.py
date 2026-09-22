@@ -1,10 +1,11 @@
 """Integrity checks for retrieval results before answer generation."""
 from __future__ import annotations
 
+from collections.abc import Iterable
 from math import isfinite
-from typing import Iterable
 
 from retrieval import Retrieved
+
 
 def validate_results(results: Iterable[Retrieved]) -> tuple[str, ...]:
     issues: list[str] = []

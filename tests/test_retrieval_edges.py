@@ -1,5 +1,6 @@
 from retrieval import Retriever
 
+
 def test_query_empty_question_returns_no_results():
     assert Retriever([]).query("", k=1) == []
 

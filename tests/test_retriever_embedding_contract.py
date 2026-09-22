@@ -1,8 +1,8 @@
 import numpy as np
 import pytest
 
-from retrieval import Retriever
 from models import Chunk
+from retrieval import Retriever
 
 
 def test_retriever_rejects_embedding_row_count_mismatch():

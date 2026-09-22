@@ -6,10 +6,10 @@ retrieval, answer assembly, and provider adapters.
 from __future__ import annotations
 
 import os
-from typing import Callable
+from collections.abc import Callable
 
-from answering import IDK, answer
 from agents import run_multi_agent
+from answering import IDK, answer
 from chunking import chunk_text
 from embeddings import TfidfEmbedder, build_embedder
 from models import Chunk
