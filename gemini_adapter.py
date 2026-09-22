@@ -6,6 +6,7 @@ from typing import Any
 
 from chatbot_config import get_api_key, get_model_name
 from chatbot_service import ChatService
+from gemini_provider import build_model
 
 
 def _prompt(question: str, hits: list[Any]) -> str:
@@ -22,13 +23,8 @@ def _prompt(question: str, hits: list[Any]) -> str:
 
 def build_gemini_llm() -> Any | None:
     """Build a synchronous RAG-compatible callable over ChatService."""
-    if not get_api_key():
-        return None
     try:
-        import google.generativeai as genai
-
-        genai.configure(api_key=get_api_key())
-        model = genai.GenerativeModel(get_model_name())
+        model = build_model(get_api_key(), get_model_name())
         service = ChatService(model)
 
         def generate(question: str, hits: list[Any]) -> str:
