@@ -34,5 +34,5 @@ def build_gemini_llm() -> Any | None:
             return asyncio.run(service.generate(_prompt(question, hits)))
 
         return generate
-    except Exception:
+    except Exception:  # noqa: BLE001 - treat any adapter setup failure as "no Gemini available"
         return None

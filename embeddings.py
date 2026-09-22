@@ -63,5 +63,5 @@ def build_embedder(corpus: list[str]):
                 return np.asarray(model.encode(texts, normalize_embeddings=False), dtype=np.float32)
 
         return NeuralEmbedder()
-    except Exception:
+    except Exception:  # noqa: BLE001 - fall back to TF-IDF if the neural embedder is unavailable
         return TfidfEmbedder().fit(corpus)

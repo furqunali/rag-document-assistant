@@ -49,7 +49,7 @@ def synthesis_agent(
         return hits[0].chunk.text, "extractive"
     try:
         generated = llm(question, hits)
-    except Exception:
+    except Exception:  # noqa: BLE001 - any LLM failure must fall back to extractive answering
         return hits[0].chunk.text, "extractive (generation unavailable)"
     if not generated or not generated.strip():
         return hits[0].chunk.text, "extractive"

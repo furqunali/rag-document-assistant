@@ -26,7 +26,7 @@ def maybe_llm() -> Callable[[str, list[Retrieved]], str] | None:
         try:
             from gemini_adapter import build_gemini_llm
             return build_gemini_llm()
-        except Exception:
+        except Exception:  # noqa: BLE001 - any Gemini import/setup failure means no LLM
             return None
 
     if os.getenv("OPENAI_API_KEY", "").strip():
@@ -54,7 +54,7 @@ def maybe_llm() -> Callable[[str, list[Retrieved]], str] | None:
                 return (response.choices[0].message.content or "").strip()
 
             return generate
-        except Exception:
+        except Exception:  # noqa: BLE001 - any OpenAI import/setup failure means no LLM
             return None
 
     return None
