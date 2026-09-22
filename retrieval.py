@@ -32,7 +32,9 @@ class Retriever:
         self.matrix: np.ndarray | None = None
 
     def query(self, question: str, k: int = 4) -> list[Retrieved]:
-        if not isinstance(question, str):
+        if question is None:
+            question = ""
+        elif not isinstance(question, str):
             raise ValueError("question must be a string")
         question = question.strip()
         if not isinstance(k, int) or isinstance(k, bool):
