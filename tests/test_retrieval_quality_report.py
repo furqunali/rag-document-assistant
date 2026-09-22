@@ -14,3 +14,7 @@ def test_retrieval_export_rejects_wrong_type():
         pass
     else:
         raise AssertionError("expected TypeError")
+
+
+def test_export_enforces_schema():
+    assert retrieval_report_dict(RetrievalGate(1, 1, True))["results"] == 1
