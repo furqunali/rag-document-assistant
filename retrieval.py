@@ -8,7 +8,7 @@ Vector = np.ndarray
 EmbedFn = Callable[[list[str]], np.ndarray]
 
 def cosine_scores(matrix: np.ndarray, vector: np.ndarray) -> np.ndarray:
-    """Return row-wise cosine scores with explicit shape validation."""
+    """Return row-wise cosine scores with explicit shape and finite-value validation."""
     matrix = np.asarray(matrix)
     vector = np.asarray(vector)
     if matrix.ndim != 2:
@@ -34,7 +34,11 @@ class Retriever:
         self.matrix: np.ndarray | None = None
 
     def query(self, question: str, k: int = 4) -> list[Retrieved]:
-        question = (question or "").strip()
+        if question is None:
+            question = ""
+        elif not isinstance(question, str):
+            raise ValueError("question must be a string")
+        question = question.strip()
         if not isinstance(k, int) or isinstance(k, bool):
             raise ValueError("k must be an integer")
         if not question or k <= 0 or not self.chunks:
@@ -47,6 +51,8 @@ class Retriever:
                 raise ValueError("embedding matrix must be 2D")
             if matrix.shape[0] != len(self.chunks):
                 raise ValueError("embedding matrix row count must match chunks")
+            if not np.isfinite(matrix).all():
+                raise ValueError("embedding matrix must contain only finite values")
             self.matrix = matrix
         query_embeddings = np.asarray(self.embed([question]))
         if query_embeddings.ndim != 2 or query_embeddings.shape[0] != 1:

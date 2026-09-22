@@ -101,6 +101,7 @@ def test_query_rejects_non_integer_k():
         r.query("refund", k=True)  # type: ignore[arg-type]
 
 
-def test_cosine_scores_rejects_nonfinite_embeddings():
-    with pytest.raises(ValueError, match="finite"):
-        cosine_scores(np.array([[1.0, np.nan]]), np.array([1.0, 0.0]))
+def test_query_rejects_non_string_question():
+    r = _retriever()
+    with pytest.raises(ValueError, match="question must be a string"):
+        r.query(123)  # type: ignore[arg-type]

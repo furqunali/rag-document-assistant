@@ -14,5 +14,8 @@ def evaluate_retrieval_gate(results: list[Retrieved], *, threshold: float = 0.5,
         raise ValueError("threshold must be between 0 and 1")
     if minimum_results < 0:
         raise ValueError("minimum_results must be non-negative")
+    for item in results:
+        if not isinstance(item, Retrieved):
+            raise TypeError("results must contain Retrieved values")
     qualifying = sum(float(item.score) >= threshold for item in results)
     return RetrievalGate(len(results), qualifying, qualifying >= minimum_results)
