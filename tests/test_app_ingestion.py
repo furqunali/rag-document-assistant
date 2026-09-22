@@ -1,6 +1,9 @@
 import pytest
 
-import app
+try:  # app pulls in the optional gradio UI stack; skip cleanly if it is unavailable
+    import app
+except ImportError as exc:  # pragma: no cover - environment-dependent
+    pytest.skip(f"gradio stack unavailable: {exc}", allow_module_level=True)
 
 
 def test_read_file_surfaces_unreadable_pdf(monkeypatch, tmp_path):
