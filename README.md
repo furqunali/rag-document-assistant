@@ -4,7 +4,7 @@ emoji: 📄
 colorFrom: teal
 colorTo: blue
 sdk: gradio
-sdk_version: 4.44.1
+sdk_version: 5.49.1
 app_file: app.py
 pinned: false
 license: mit
@@ -99,6 +99,12 @@ sample_docs/           # fictional handbook for the demo
 tests/                 # RAG logic tests (model-free)
 requirements.txt
 ```
+
+
+
+## Validation & Compatibility
+
+The retrieval and ingestion layers validate embedding row counts, retrieval vector shapes, CLI thresholds, and unreadable uploads before they reach the answer pipeline. The Hugging Face Space metadata is kept aligned with the pinned Gradio dependency used by the project.
 
 ## Future Improvements
 
