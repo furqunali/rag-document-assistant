@@ -1,9 +1,11 @@
 import pytest
+import numpy as np
 
 """RAG logic tests — run without downloading any model (TF-IDF path)."""
 from pathlib import Path
 
 import rag
+from retrieval import cosine_scores
 
 DOC = (Path(__file__).resolve().parents[1] / "sample_docs" / "company_handbook.md")
 
