@@ -33,6 +33,8 @@ class Retriever:
 
     def query(self, question: str, k: int = 4) -> list[Retrieved]:
         question = (question or "").strip()
+        if not isinstance(k, int) or isinstance(k, bool):
+            raise ValueError("k must be an integer")
         if not question or k <= 0 or not self.chunks:
             return []
         if self.embed is None:
