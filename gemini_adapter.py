@@ -4,9 +4,12 @@ from __future__ import annotations
 import asyncio
 from typing import Any
 
-from chatbot_config import get_api_key, get_model_name
-from chatbot_service import ChatService
-from gemini_provider import build_model
+try:  # optional gemini-chatbot integration package
+    from chatbot_config import get_api_key, get_model_name
+    from chatbot_service import ChatService
+    from gemini_provider import build_model
+except ImportError:  # pragma: no cover - integration is optional
+    get_api_key = get_model_name = ChatService = build_model = None
 
 
 def _prompt(question: str, hits: list[Any]) -> str:
