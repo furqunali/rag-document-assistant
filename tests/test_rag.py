@@ -97,3 +97,9 @@ def test_query_rejects_non_integer_k():
         r.query("refund", k=1.5)  # type: ignore[arg-type]
     with pytest.raises(ValueError, match="k must be an integer"):
         r.query("refund", k=True)  # type: ignore[arg-type]
+
+
+def test_query_rejects_non_string_question():
+    r = _retriever()
+    with pytest.raises(ValueError, match="question must be a string"):
+        r.query(123)  # type: ignore[arg-type]
