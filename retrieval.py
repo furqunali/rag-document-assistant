@@ -7,7 +7,6 @@ from typing import Callable
 import numpy as np
 
 from models import Chunk
-
 Vector = np.ndarray
 EmbedFn = Callable[[list[str]], np.ndarray]
 
