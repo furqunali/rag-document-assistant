@@ -89,3 +89,11 @@ def test_query_with_zero_k_returns_no_results():
 def test_query_never_returns_more_than_available_chunks():
     r = _retriever()
     assert len(r.query("refund", k=999)) == len(r.chunks)
+
+
+def test_query_rejects_non_integer_k():
+    r = _retriever()
+    with pytest.raises(ValueError, match="k must be an integer"):
+        r.query("refund", k=1.5)  # type: ignore[arg-type]
+    with pytest.raises(ValueError, match="k must be an integer"):
+        r.query("refund", k=True)  # type: ignore[arg-type]
