@@ -17,6 +17,8 @@ def cosine_scores(matrix: np.ndarray, vector: np.ndarray) -> np.ndarray:
         raise ValueError("vector must be a 1D array")
     if matrix.shape[1] != vector.shape[0]:
         raise ValueError("matrix and vector dimensions must match")
+    if not np.isfinite(matrix).all() or not np.isfinite(vector).all():
+        raise ValueError("matrix and vector must contain only finite values")
     denominator = (np.linalg.norm(matrix, axis=1) * np.linalg.norm(vector)) + 1e-9
     return (matrix @ vector) / denominator
 
