@@ -1,7 +1,7 @@
 import numpy as np
 
 from models import Chunk
-from retrieval import Retriever, Retrieved, cosine_scores
+from retrieval import Retrieved, Retriever, cosine_scores
 
 
 def embed(texts):

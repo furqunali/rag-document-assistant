@@ -3,8 +3,8 @@ from __future__ import annotations
 
 import re
 
-from rag_config import ChunkConfig
 from models import Chunk
+from rag_config import ChunkConfig
 
 
 def normalize_text(text: str) -> str:

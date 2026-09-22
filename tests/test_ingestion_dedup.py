@@ -1,6 +1,8 @@
 import pytest
+
 from document_loader_expanded import LoadedDocument
 from ingestion_dedup import duplicate_sources, unique_documents
+
 
 def d(checksum, source): return LoadedDocument(source, "text", checksum=checksum)
 

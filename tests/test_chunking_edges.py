@@ -1,6 +1,6 @@
 import pytest
 
-from chunking import normalize_text, split_sentences, chunk_text
+from chunking import chunk_text, normalize_text, split_sentences
 
 
 def test_normalize_text_collapses_whitespace():

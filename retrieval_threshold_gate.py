@@ -1,7 +1,10 @@
 """Deterministic evidence threshold gate for retrieved results."""
 from __future__ import annotations
+
 from dataclasses import dataclass
+
 from retrieval import Retrieved
+
 
 @dataclass(frozen=True)
 class RetrievalGate:

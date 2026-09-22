@@ -1,8 +1,11 @@
 """Deterministic quality profile for a retrieved evidence set."""
 from __future__ import annotations
+
+from collections.abc import Iterable
 from dataclasses import dataclass
-from typing import Iterable
+
 from retrieval import Retrieved
+
 
 @dataclass(frozen=True)
 class RetrievalQuality:

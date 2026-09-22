@@ -1,5 +1,7 @@
 from dataclasses import asdict, is_dataclass
+
 from models import Chunk
+
 
 def test_chunk_is_dataclass():
     assert is_dataclass(Chunk)

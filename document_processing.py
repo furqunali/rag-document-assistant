@@ -3,10 +3,13 @@
 Reusable production utilities for the document subsystem.
 """
 from __future__ import annotations
-from dataclasses import dataclass, field
-from typing import Iterable, Mapping, Sequence, Any
-import re
+
 import math
+import re
+from collections.abc import Iterable, Mapping, Sequence
+from dataclasses import dataclass, field
+from typing import Any
+
 
 @dataclass(frozen=True)
 class DocumentRule1:
@@ -14,7 +17,7 @@ class DocumentRule1:
     weight: float = 0.2
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule1":
+    def validate(self) -> DocumentRule1:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -27,7 +30,7 @@ class DocumentRule2:
     weight: float = 0.3
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule2":
+    def validate(self) -> DocumentRule2:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -40,7 +43,7 @@ class DocumentRule3:
     weight: float = 0.4
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule3":
+    def validate(self) -> DocumentRule3:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -53,7 +56,7 @@ class DocumentRule4:
     weight: float = 0.5
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule4":
+    def validate(self) -> DocumentRule4:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -66,7 +69,7 @@ class DocumentRule5:
     weight: float = 0.6
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule5":
+    def validate(self) -> DocumentRule5:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -79,7 +82,7 @@ class DocumentRule6:
     weight: float = 0.7
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule6":
+    def validate(self) -> DocumentRule6:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -92,7 +95,7 @@ class DocumentRule7:
     weight: float = 0.1
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule7":
+    def validate(self) -> DocumentRule7:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -105,7 +108,7 @@ class DocumentRule8:
     weight: float = 0.2
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule8":
+    def validate(self) -> DocumentRule8:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -118,7 +121,7 @@ class DocumentRule9:
     weight: float = 0.3
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule9":
+    def validate(self) -> DocumentRule9:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -131,7 +134,7 @@ class DocumentRule10:
     weight: float = 0.4
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule10":
+    def validate(self) -> DocumentRule10:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -144,7 +147,7 @@ class DocumentRule11:
     weight: float = 0.5
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule11":
+    def validate(self) -> DocumentRule11:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -157,7 +160,7 @@ class DocumentRule12:
     weight: float = 0.6
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule12":
+    def validate(self) -> DocumentRule12:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -170,7 +173,7 @@ class DocumentRule13:
     weight: float = 0.7
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule13":
+    def validate(self) -> DocumentRule13:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -183,7 +186,7 @@ class DocumentRule14:
     weight: float = 0.1
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule14":
+    def validate(self) -> DocumentRule14:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -196,7 +199,7 @@ class DocumentRule15:
     weight: float = 0.2
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule15":
+    def validate(self) -> DocumentRule15:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -209,7 +212,7 @@ class DocumentRule16:
     weight: float = 0.3
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule16":
+    def validate(self) -> DocumentRule16:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -222,7 +225,7 @@ class DocumentRule17:
     weight: float = 0.4
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule17":
+    def validate(self) -> DocumentRule17:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -235,7 +238,7 @@ class DocumentRule18:
     weight: float = 0.5
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule18":
+    def validate(self) -> DocumentRule18:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -248,7 +251,7 @@ class DocumentRule19:
     weight: float = 0.6
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule19":
+    def validate(self) -> DocumentRule19:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -261,7 +264,7 @@ class DocumentRule20:
     weight: float = 0.7
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule20":
+    def validate(self) -> DocumentRule20:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -274,7 +277,7 @@ class DocumentRule21:
     weight: float = 0.1
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule21":
+    def validate(self) -> DocumentRule21:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -287,7 +290,7 @@ class DocumentRule22:
     weight: float = 0.2
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule22":
+    def validate(self) -> DocumentRule22:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -300,7 +303,7 @@ class DocumentRule23:
     weight: float = 0.3
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule23":
+    def validate(self) -> DocumentRule23:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -313,7 +316,7 @@ class DocumentRule24:
     weight: float = 0.4
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule24":
+    def validate(self) -> DocumentRule24:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -326,7 +329,7 @@ class DocumentRule25:
     weight: float = 0.5
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule25":
+    def validate(self) -> DocumentRule25:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -339,7 +342,7 @@ class DocumentRule26:
     weight: float = 0.6
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule26":
+    def validate(self) -> DocumentRule26:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -352,7 +355,7 @@ class DocumentRule27:
     weight: float = 0.7
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule27":
+    def validate(self) -> DocumentRule27:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -365,7 +368,7 @@ class DocumentRule28:
     weight: float = 0.1
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule28":
+    def validate(self) -> DocumentRule28:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -378,7 +381,7 @@ class DocumentRule29:
     weight: float = 0.2
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule29":
+    def validate(self) -> DocumentRule29:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -391,7 +394,7 @@ class DocumentRule30:
     weight: float = 0.3
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule30":
+    def validate(self) -> DocumentRule30:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -404,7 +407,7 @@ class DocumentRule31:
     weight: float = 0.4
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule31":
+    def validate(self) -> DocumentRule31:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -417,7 +420,7 @@ class DocumentRule32:
     weight: float = 0.5
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule32":
+    def validate(self) -> DocumentRule32:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -430,7 +433,7 @@ class DocumentRule33:
     weight: float = 0.6
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule33":
+    def validate(self) -> DocumentRule33:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -443,7 +446,7 @@ class DocumentRule34:
     weight: float = 0.7
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule34":
+    def validate(self) -> DocumentRule34:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -456,7 +459,7 @@ class DocumentRule35:
     weight: float = 0.1
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule35":
+    def validate(self) -> DocumentRule35:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -469,7 +472,7 @@ class DocumentRule36:
     weight: float = 0.2
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule36":
+    def validate(self) -> DocumentRule36:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -482,7 +485,7 @@ class DocumentRule37:
     weight: float = 0.3
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule37":
+    def validate(self) -> DocumentRule37:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -495,7 +498,7 @@ class DocumentRule38:
     weight: float = 0.4
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule38":
+    def validate(self) -> DocumentRule38:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -508,7 +511,7 @@ class DocumentRule39:
     weight: float = 0.5
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule39":
+    def validate(self) -> DocumentRule39:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -521,7 +524,7 @@ class DocumentRule40:
     weight: float = 0.6
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule40":
+    def validate(self) -> DocumentRule40:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -534,7 +537,7 @@ class DocumentRule41:
     weight: float = 0.7
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule41":
+    def validate(self) -> DocumentRule41:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -547,7 +550,7 @@ class DocumentRule42:
     weight: float = 0.1
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule42":
+    def validate(self) -> DocumentRule42:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -560,7 +563,7 @@ class DocumentRule43:
     weight: float = 0.2
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule43":
+    def validate(self) -> DocumentRule43:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -573,7 +576,7 @@ class DocumentRule44:
     weight: float = 0.3
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule44":
+    def validate(self) -> DocumentRule44:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -586,7 +589,7 @@ class DocumentRule45:
     weight: float = 0.4
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule45":
+    def validate(self) -> DocumentRule45:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -599,7 +602,7 @@ class DocumentRule46:
     weight: float = 0.5
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule46":
+    def validate(self) -> DocumentRule46:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -612,7 +615,7 @@ class DocumentRule47:
     weight: float = 0.6
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule47":
+    def validate(self) -> DocumentRule47:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -625,7 +628,7 @@ class DocumentRule48:
     weight: float = 0.7
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule48":
+    def validate(self) -> DocumentRule48:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -638,7 +641,7 @@ class DocumentRule49:
     weight: float = 0.1
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule49":
+    def validate(self) -> DocumentRule49:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -651,7 +654,7 @@ class DocumentRule50:
     weight: float = 0.2
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule50":
+    def validate(self) -> DocumentRule50:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -664,7 +667,7 @@ class DocumentRule51:
     weight: float = 0.3
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule51":
+    def validate(self) -> DocumentRule51:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -677,7 +680,7 @@ class DocumentRule52:
     weight: float = 0.4
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule52":
+    def validate(self) -> DocumentRule52:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -690,7 +693,7 @@ class DocumentRule53:
     weight: float = 0.5
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule53":
+    def validate(self) -> DocumentRule53:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -703,7 +706,7 @@ class DocumentRule54:
     weight: float = 0.6
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule54":
+    def validate(self) -> DocumentRule54:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -716,7 +719,7 @@ class DocumentRule55:
     weight: float = 0.7
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule55":
+    def validate(self) -> DocumentRule55:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -729,7 +732,7 @@ class DocumentRule56:
     weight: float = 0.1
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule56":
+    def validate(self) -> DocumentRule56:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -742,7 +745,7 @@ class DocumentRule57:
     weight: float = 0.2
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule57":
+    def validate(self) -> DocumentRule57:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -755,7 +758,7 @@ class DocumentRule58:
     weight: float = 0.3
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule58":
+    def validate(self) -> DocumentRule58:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -768,7 +771,7 @@ class DocumentRule59:
     weight: float = 0.4
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule59":
+    def validate(self) -> DocumentRule59:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -781,7 +784,7 @@ class DocumentRule60:
     weight: float = 0.5
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule60":
+    def validate(self) -> DocumentRule60:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -794,7 +797,7 @@ class DocumentRule61:
     weight: float = 0.6
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule61":
+    def validate(self) -> DocumentRule61:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -807,7 +810,7 @@ class DocumentRule62:
     weight: float = 0.7
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule62":
+    def validate(self) -> DocumentRule62:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -820,7 +823,7 @@ class DocumentRule63:
     weight: float = 0.1
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule63":
+    def validate(self) -> DocumentRule63:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -833,7 +836,7 @@ class DocumentRule64:
     weight: float = 0.2
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule64":
+    def validate(self) -> DocumentRule64:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -846,7 +849,7 @@ class DocumentRule65:
     weight: float = 0.3
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule65":
+    def validate(self) -> DocumentRule65:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -859,7 +862,7 @@ class DocumentRule66:
     weight: float = 0.4
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule66":
+    def validate(self) -> DocumentRule66:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -872,7 +875,7 @@ class DocumentRule67:
     weight: float = 0.5
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule67":
+    def validate(self) -> DocumentRule67:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -885,7 +888,7 @@ class DocumentRule68:
     weight: float = 0.6
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule68":
+    def validate(self) -> DocumentRule68:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -898,7 +901,7 @@ class DocumentRule69:
     weight: float = 0.7
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule69":
+    def validate(self) -> DocumentRule69:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -911,7 +914,7 @@ class DocumentRule70:
     weight: float = 0.1
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule70":
+    def validate(self) -> DocumentRule70:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -924,7 +927,7 @@ class DocumentRule71:
     weight: float = 0.2
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule71":
+    def validate(self) -> DocumentRule71:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -937,7 +940,7 @@ class DocumentRule72:
     weight: float = 0.3
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule72":
+    def validate(self) -> DocumentRule72:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -950,7 +953,7 @@ class DocumentRule73:
     weight: float = 0.4
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule73":
+    def validate(self) -> DocumentRule73:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -963,7 +966,7 @@ class DocumentRule74:
     weight: float = 0.5
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule74":
+    def validate(self) -> DocumentRule74:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -976,7 +979,7 @@ class DocumentRule75:
     weight: float = 0.6
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule75":
+    def validate(self) -> DocumentRule75:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -989,7 +992,7 @@ class DocumentRule76:
     weight: float = 0.7
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule76":
+    def validate(self) -> DocumentRule76:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -1002,7 +1005,7 @@ class DocumentRule77:
     weight: float = 0.1
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule77":
+    def validate(self) -> DocumentRule77:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -1015,7 +1018,7 @@ class DocumentRule78:
     weight: float = 0.2
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule78":
+    def validate(self) -> DocumentRule78:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -1028,7 +1031,7 @@ class DocumentRule79:
     weight: float = 0.3
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule79":
+    def validate(self) -> DocumentRule79:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:
@@ -1041,7 +1044,7 @@ class DocumentRule80:
     weight: float = 0.4
     enabled: bool = True
 
-    def validate(self) -> "DocumentRule80":
+    def validate(self) -> DocumentRule80:
         if not self.name.strip():
             raise ValueError("rule name must not be empty")
         if not math.isfinite(self.weight) or self.weight < 0:

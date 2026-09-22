@@ -1,12 +1,16 @@
 """CLI for deterministic, local RAG queries."""
 from __future__ import annotations
-import argparse, json
+
+import argparse
+import json
 import math
 from pathlib import Path
+
 from answering import answer
 from chunking import chunk_text
 from embeddings import TfidfEmbedder
 from retrieval import Retriever
+
 
 def build_parser():
     p=argparse.ArgumentParser(description="Query local documents with deterministic RAG")

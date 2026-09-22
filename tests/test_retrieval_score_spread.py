@@ -2,6 +2,7 @@ from models import Chunk
 from retrieval import Retrieved
 from retrieval_score_spread import score_spread
 
+
 def test_score_spread_returns_range():
     results = [Retrieved(Chunk("a","a.md",0),.2), Retrieved(Chunk("b","b.md",1),.8)]
     assert score_spread(results) == .6

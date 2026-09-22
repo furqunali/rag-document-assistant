@@ -1,8 +1,7 @@
-import pytest
 
+from agents import citation_agent, retrieval_agent, run_multi_agent
 from models import Chunk
 from retrieval import Retrieved
-from agents import citation_agent, retrieval_agent, run_multi_agent
 
 
 def hits(score=0.8):

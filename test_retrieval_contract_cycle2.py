@@ -1,7 +1,9 @@
 import numpy as np
 import pytest
-from retrieval import Retriever, cosine_scores
+
 from models import Chunk
+from retrieval import Retriever, cosine_scores
+
 
 def test_cosine_scores_rejects_nonfinite_query_vector():
     with pytest.raises(ValueError, match="finite"):

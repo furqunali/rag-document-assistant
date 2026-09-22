@@ -1,6 +1,9 @@
 """Diagnostics for retrieval quality and result bounds."""
 from __future__ import annotations
-from typing import Iterable, Mapping, Any
+
+from collections.abc import Iterable, Mapping
+from typing import Any
+
 
 def score_summary(results: Iterable[Mapping[str, Any]]) -> dict[str, float]:
     """Summarize score distribution without changing retrieval behavior."""

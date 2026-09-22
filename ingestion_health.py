@@ -1,7 +1,10 @@
 """Deterministic ingestion health checks for loaded documents."""
 from __future__ import annotations
+
 from dataclasses import dataclass
+
 from document_loader_expanded import LoadedDocument
+
 
 @dataclass(frozen=True)
 class IngestionHealth:

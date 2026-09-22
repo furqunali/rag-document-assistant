@@ -1,7 +1,10 @@
 """Aggregate deterministic ingestion policy findings."""
 from __future__ import annotations
+
 from dataclasses import dataclass
+
 from ingestion_policy import IngestionFinding
+
 
 @dataclass(frozen=True)
 class IngestionSummary:

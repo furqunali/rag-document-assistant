@@ -1,6 +1,7 @@
 from document_loader_expanded import load_document
 from ingestion_pipeline import prepare_ingestion
 
+
 def test_prepare_ingestion_removes_duplicate_embeddings():
     first=load_document("a.md","same")
     second=load_document("b.md","same")

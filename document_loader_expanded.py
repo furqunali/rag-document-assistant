@@ -1,9 +1,9 @@
 """Validated document loading primitives for the ingestion pipeline."""
 from __future__ import annotations
 
-from dataclasses import dataclass
 import hashlib
 import re
+from dataclasses import dataclass
 
 
 @dataclass(frozen=True)

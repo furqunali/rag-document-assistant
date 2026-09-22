@@ -1,6 +1,7 @@
-from retrieval import Retrieved
 from models import Chunk
+from retrieval import Retrieved
 from retrieval_validation import is_valid_results, validate_results
+
 
 def test_validation_accepts_unique_finite_results():
     results = [Retrieved(Chunk("robot", "a.md", 0), 0.8), Retrieved(Chunk("arm", "b.md", 0), 0.4)]
