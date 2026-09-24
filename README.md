@@ -12,6 +12,8 @@ license: mit
 
 # Production-Style RAG Document Assistant
 
+![Lines of code](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/furqunali/rag-document-assistant/main/.github/badges/loc.json)
+
 🔗 [**🤗 Live demo on Hugging Face »**](https://huggingface.co/spaces/FurqanAli12345/rag-document-assistant)
 
 Ask questions about your own documents — answers are grounded in your text, cited to the source, and the assistant says **"I don't know"** instead of guessing.
